@@ -1,16 +1,8 @@
-# practice11
+#  Практическая работа №13
+##  Лисичкин Виктор Евгеньевич ЭФБО-05-22
 
-A new Flutter project.
 
-## Getting Started
+https://github.com/user-attachments/assets/b06e29c9-beb2-468a-8f78-3b3cfcbf6ee7
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## База данных постгрес
+![image](https://github.com/user-attachments/assets/3ee2e083-1426-4d7d-b3a9-90d01b82100e)
