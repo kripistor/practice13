@@ -69,8 +69,9 @@ class _MainPageState extends State<MainPage> {
                 HomePage(),
                 CartPage(),
                 FavoritesPage(favoriteProducts: products.where((product) => product.isFavorite).toList()),
-                ProfilePage(),
                 ChatPage(),
+                ProfilePage(),
+
               ],
             );
           }
@@ -91,13 +92,14 @@ class _MainPageState extends State<MainPage> {
             label: 'Избранное',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Профиль',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Чат',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Профиль',
+          ),
+
         ],
         currentIndex: _selectedIndex,
         backgroundColor: Colors.white,

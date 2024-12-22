@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../models/order_model.dart';
 import '../models/product_model.dart';
 
 class ProductService {
@@ -25,7 +26,6 @@ class ProductService {
           'is_favorite': product.isFavorite,
         }),
       );
-
       if (response.statusCode != 201) {
         print('Failed to add product: ${response.statusCode}');
         print('Response body: ${response.body}');
@@ -41,7 +41,7 @@ class ProductService {
   }
   Future<List<Product>> fetchProducts({String? query}) async {
     final response = await http.get(Uri.parse('http://172.19.0.1:8080/products'));
-
+    print(response);
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
       List<Product> products = body.map((dynamic item) => Product.fromJson(item)).toList();
@@ -73,6 +73,36 @@ class ProductService {
     } catch (e) {
       print('Error updating product: $e');
       throw Exception('Failed to update product');
+    }
+  }
+  Future<void> createOrder(List<Product> products) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://192.168.31.40:8080/orders/create'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          'products': products.map((product) => product.toJson()).toList(),
+        }),
+      );
+      if (response.statusCode != 201) {
+        throw Exception('Failed to create order');
+      }
+    } catch (e) {
+      print('Error creating order: $e');
+      throw Exception('Failed to create order');
+    }
+  }
+
+  Future<List<Order>> fetchOrders() async {
+    final response = await http.get(Uri.parse('http://192.168.31.40:8080/orders'));
+    if (response.statusCode == 200) {
+      List<dynamic> body = jsonDecode(utf8.decode(response.bodyBytes));
+      List<Order> orders = body.map((dynamic item) => Order.fromJson(item)).toList();
+      return orders;
+    } else {
+      throw Exception('Failed to load orders');
     }
   }
 }
